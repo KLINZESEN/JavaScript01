@@ -1,0 +1,294 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>导航页面</title>
+<style type="text/css">
+
+*{
+ margin:0; 
+ padding:0; 
+ text-decoration:none; /*去掉链接的下划线*/
+ border:0;
+}
+body{
+background-image:url(1.jpg);
+ background-size:cover;
+ transition:2s;    /*过渡效果两秒*/
+}
+#box{
+ width:70%; 
+ height:200px; 
+ margin:20px auto; 
+ box-shadow:0 0 20px #000 inset; /*四周阴影（内部）*/
+ transition:1s;
+ }
+#box:hover{
+ background-color:#000; 
+ opacity: 0.7;      /*透明效果*/
+}
+#box p{
+ line-height:200px; 
+ text-align:center;
+ font-size:72px; 
+ color:#000;    
+ }
+#box a:hover p{
+ color:#fff;
+}
+#vice-box{
+ width:70%; 
+ margin:20px auto;
+ transition:0.2s;
+ }
+#limit{
+width:100%; 
+overflow:hidden;
+}
+#site{
+ width:24%; 
+ height:150px; 
+ float:left;     /*左浮动*/
+ margin-left:0.5%;
+ margin-right:0.5%;
+ margin-top:5px;
+ margin-bottom:5px;
+ box-shadow:0 0 20px #000 inset;
+  transition:1s;
+ }
+#site:hover{
+ background-color:#000; 
+ opacity: 0.7;
+}
+#site p{
+ line-height:150px; 
+ text-align:center; 
+ font-size:36px;
+ color:#000;
+}
+#site a:hover p{
+ color:#fff;
+}
+#author{
+ width:70%;
+ height:50px;
+ margin:0 auto;
+ }
+#name{
+ display:block;
+ width:30%; 
+ line-height:50px;
+ margin:0 auto; 
+ text-align:center; 
+ color:#000;
+ font:15px; 
+ transition:2s;
+ cursor:pointer;   /*光标呈现为指示链接的指针（一只手）*/
+ }
+#name:hover{ 
+ color:#fff;
+ }
+#MrH{
+ position:relative;
+ top:5px;
+ width:70%;
+ margin:0 auto;
+ z-index:1;
+ }
+#MrH img{
+ position:relative;
+ width:100%;
+ height:0;
+ z-index:1;}
+#MrH p{
+ position:absolute; 
+ display:inline-block;
+ background-color:#000; 
+ opacity:0.8; 
+ width:50px;
+ height:25px; 
+ line-height:25px;
+ text-align:center;
+ bottom:5px;
+ right:5px;
+ z-index:10; 
+ color:#fff; 
+ cursor:pointer; 
+ transition:1s;
+ }
+#MrH p:hover{
+opacity:1;
+}
+#button{
+ display:inline-block; 
+ width:100px; 
+ height:50px;
+ position:fixed;
+ right:50px; 
+ top:20px;
+ opacity:0.7;
+ color:#fff;
+ cursor:pointer;
+ }
+#next{
+ position:relative;
+ float:right; 
+ width:50px;
+ text-align:center;
+ line-height:50px;
+ font-size:25px; 
+ right:0;
+ background-color:#000;
+ }
+#next:hover{
+ opacity:0.9;
+}
+#prev{
+ position:relative;
+ float:left;
+ width:50px;
+ text-align:center;
+ line-height:50px;
+ font-size:25px; 
+ left:0;
+ background-color:#000;
+ }
+#prev:hover{
+opacity:0.9;
+}
+</style>
+<script type="text/javascript">
+    var BGI=9;
+    window.onload=function anonymous(){
+    var name=document.getElementById("name");
+	var hiden=document.getElementById("hiden");
+	var next=document.getElementById("next");
+	var prev=document.getElementById("prev");
+	var page=document.getElementById("page");
+    var box=document.getElementById("box");
+    var Vbox=document.getElementById("vice-box");
+	var button=document.getElementById("button");
+	var name=document.getElementById("name"); 
+	var maxImage=19;
+	var height=0;
+		
+		/*点底部文字，跳出隐藏图片*/
+	name.onclick=function drop(){
+			if(height<450){
+				height+=1;
+				document.getElementById("photo").style.height=height+"px";
+			}
+			/*在1毫秒数后调drop方法*/
+			setTimeout(drop,1);
+		}
+		
+		/*点击按钮hiden，缩回隐藏图片*/
+		hiden.onclick=function cover(){
+			if(height>=0){
+				height-=1;
+		document.getElementById("photo").style.height=height+"px";
+			}
+			/*在1毫秒数后调cover方法*/
+			setTimeout(cover,1);
+		}
+		
+		/*点击更换图片的按钮，跳出提示*/
+		prev.onclick=function(){
+            alert("抱歉，此页面暂时无法更换背景图。");
+		}
+		next.onclick=function(){
+			BGI++;
+			if(BGI>maxImage){
+				BGI=1;
+			}
+			alert("抱歉，此页面暂时无法更换背景图。");
+		}
+		
+		
+		function width(){
+			if(document.body.offsetWidth<971){
+				box.style.width="970px";	
+				Vbox.style.width="970px";
+				button.style.right="0px";
+				name.style.width="290px";
+			}else{
+				box.style.width="70%";	
+				Vbox.style.width="70%";
+				button.style.right="50px";
+				name.style.width="30%";	
+			}	
+		}
+			//setInterval(width,1000000);
+	}
+</script>
+</head>
+
+<body id="page">
+<div id="MrH">
+	<a href="http://user.qzone.qq.com/1043580859/main" target="_blank" ><img title="点击进入我的空间" id="photo" src="2.jpg"></a>
+    <p id="hiden">hiden</p>
+</div>
+
+<div id="button">
+	<p id="next" title="下一张背景图">&gt;</p>
+    <p id="prev" title="上一张背景图"><</p>
+</div>
+
+<div id="box">
+	<a href="http://www.baidu.com/" target="_new"><p>Baidu</p></a>
+</div>
+
+<div id="vice-box">
+	<div id="limit">
+    	<div id="site">
+        	<a href="http://www.youku.com/" target="_blank"><p>Youku</p></a>
+        </div>
+        <div id="site">
+        	<a href="http://www.taobao.com/" target="_blank"><p>Taobao</p></a>
+        </div>
+        <div id="site">
+        	<a href="https://www.1688.com/" target="_blank">
+        	<p>Albb</p></a>
+        </div>
+        <div id="site">
+        	<a href="http://haifengxian.58.com/?utm_source=market&spm=b-31580022738699-me-f-862.mingzhan" target="_blank">
+        	<p>58Tc</p></a>
+        </div>
+        <div id="site">
+        	<a href="http://www.iqiyi.com/" target="_blank"><p>Iqiyi</p></a>
+        </div>
+        <div id="site">
+        	<a href="https://v.qq.com/?ptag=qqbsc" target="_blank">
+       	  <p>Txtv</p></a>
+        </div>
+        <div id="site">
+        	<a href="http://www.51job.com/?from=baidupz" target="_blank"><p>Qcwy</p></a>
+        </div>
+        <div id="site">
+        	<a href="http://www.imooc.com/" target="_blank"><p>Imooc</p></a>
+        </div>
+        <div id="site">
+        	<a href="http://www.renren.com/" target="_blank"><p>Rr</p></a>
+        </div>
+        <div id="site">
+        	<a href="http://www.sina.com.cn/" target="_blank">
+        	<p>Sina</p>
+        	</a>
+        </div>
+        <div id="site">
+        	<a href="https://www.jd.com/" target="_blank">
+        	<p>Jd</p></a>
+        </div>
+        <div id="site">
+        	<a href="http://xiuxiu.web.meitu.com/" target="_blank">
+        	<p>Mtxx</p></a>
+        </div>
+    </div>
+</div>
+
+<div id="author">
+	<p id="name">Made By LZS<br>QQ:1043580859&nbsp;&nbsp;&nbsp;WeiXin:LZS80859</p>
+</div>
+
+</body>
+</html>
